@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact / Complaint</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <a href="/">Library System</a>
+        </div>
+        <div class="navbar-links">
+            {% if session['role'] == 'student' %}
+                <a href="{{ url_for('student_profile') }}">Profile</a>
+            {% else %}
+                <a href="{{ url_for('admin_profile') }}">Dashboard</a>
+            {% endif %}
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </nav>
+
+    <div class="form-container">
+        <h2>Submit a Complaint</h2>
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash {{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        <form method="POST">
+            <label for="topic">Topic:</label>
+            <input type="text" id="topic" name="topic" placeholder="Topic (e.g., Book Request, System Issue)" required>
+
+            <label for="complaint">Complaint:</label>
+            <textarea id="complaint" name="complaint" placeholder="Describe your complaint here..." rows="5" required></textarea>
+
+            <button type="submit">Submit Complaint</button>
+        </form>
+    </div>
+</body>
+</html>

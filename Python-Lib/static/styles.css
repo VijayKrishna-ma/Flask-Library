@@ -1,0 +1,207 @@
+/* General page style */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0; /* Set margin 0 to remove space */
+    padding: 0;
+    min-height: 100vh; /* Full height */
+    background: linear-gradient(135deg,rgb(177, 112, 90) 0%, #653111 100%);
+    background-size: cover; /* Cover the whole page */
+    background-repeat: no-repeat; /* Do not repeat */
+    background-position: center center; /* Center nicely */
+    background-attachment: fixed; /* (Optional) Fixed background when scrolling */
+    color: #333;
+}
+
+
+/* Centered headings */
+h2, h3 {
+    text-align: center;
+    color: #2c3e50;
+}
+
+/* Forms */
+form {
+    max-width: 800px;
+    margin: 60px auto;
+    background: rgb(248, 207, 153);
+    background: linear-gradient(135deg,rgb(248, 207, 153) 0%, #a07d67 100%);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px rgba(0,0,0,0.1);
+}
+
+form :hover{
+    box-shadow: 0px 12px 10px rgba(0,0,0,0.1);
+    
+}
+form input, form button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+form button:hover {
+    background-color: #2980b9;
+}
+
+/* Tables */
+table {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse:collapse;
+    background: rgb(3, 3, 3);
+    box-shadow: 0px 2px 10px rgba(0,0,0,0.1);
+}
+
+table th, table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+table td{
+    background: linear-gradient(135deg,rgb(246, 226, 201) 0%, #ffde90 100%);
+}
+table th {
+    background-color: #3498db;
+    color: white;
+    background: linear-gradient(135deg,rgb(248, 207, 153) 0%, #a07d67 100%);
+}
+
+table td :hover{
+    box-shadow: 0px 2px 10px rgba(0,0,0,0.1);
+}
+/* Search Bars */
+input[type="text"]#loanSearch,
+input[type="text"]#bookSearch,
+input[type="text"]#adminBookSearch {
+    width: 50%;
+    margin: 0 auto;
+    display: block;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Flash Messages */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li.success {
+    color: green;
+}
+
+ul li.error {
+    color: red;
+}
+
+/* Links */
+a {
+    display: inline-block;
+    margin: 10px;
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+    
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Chart Canvas */
+canvas {
+    display: block;
+    margin: 20px auto;
+}
+.books{
+    background-color: aquamarine;
+}
+.navbar {
+    display: flex;
+    background-color: #2c3e50;
+    padding: 10px 20px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* Logo/Brand */
+  .navbar-brand {
+    font-size: 24px;
+    color: #ecf0f1;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  /* Navbar links container */
+  .navbar-links {
+    display: flex;
+    gap: 20px;
+  }
+
+  /* Each link */
+  .navbar-links a {
+    color: #ecf0f1;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+  }
+
+  /* Hover effect */
+  .navbar-links a:hover {
+    color: #1abc9c;
+  }
+  .profile_box{
+    background-color: #ddd;
+    margin-left: 250px;
+    margin-right: 250px;
+    padding: 10px;
+    margin-top: 80px;
+    margin-bottom: 40px;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 20px;
+    border: 1px solid #050505;
+    box-shadow: 0px 2px 10px rgba(0,0,0,0.1);
+    background: linear-gradient(135deg,rgb(248, 207, 153) 0%, #a07d67 100%);
+  }
+  .prof_box{
+    background-color: #fefefe;
+    margin-left: 300px;
+    margin-right: 300px;
+    padding: 10px;
+    margin-top: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border: 5px solid #050505;
+    box-shadow: 0px 2px 10px rgba(0,0,0,0.1);
+    background: linear-gradient(135deg,rgb(246, 226, 201) 0%, #ffde90 100%);
+  }
+  .Dash{
+    margin-left: 60px;
+    margin-right: 60px;
+    margin-top: 20px;
+    background: rgb(180, 179, 179);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px rgba(0,0,0,0.1);
+    background: linear-gradient(135deg,rgb(248, 207, 153) 0%, #a07d67 100%);
+  }
+  .chart-container {
+    width: 40%;
+    margin: 40px auto;
+    background: linear-gradient(135deg,rgb(246, 226, 201) 0%, #ffde90 100%);
+}

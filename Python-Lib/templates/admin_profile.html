@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <a href="/">Library System</a>
+        </div>
+        <div class="navbar-links">
+            <a href="/admin_profile">Profile</a>
+            <a href="/admin_catalog">Catalog</a>
+            <a href="/admin_stats">Stats</a>
+            <a href="/recieval">Feedback</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </nav>
+<div class="Dash">
+    <h2>Admin Dashboard</h2>
+
+    <h3>All Current Loans:</h3>
+    <input type="text" id="loanSearch" placeholder="Search..." onkeyup="searchTable('loanSearch', 'loanTable')">
+
+    <table id="loanTable">
+        <tr>
+            <th>Roll Number</th>
+            <th>Book ID</th>
+            <th>Book Title</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Fine</th>
+        </tr>
+        {% for loan in loans %}
+        <tr>
+            <td>{{ loan.ROLL_NUMBER }}</td>
+            <td>{{ loan.BOOK_ID }}</td>
+            <td>{{ loan.BOOK_TITLE }}</td>
+            <td>{{ loan.START_DATE.strftime('%d-%m-%Y') }}</td>
+            <td>{{ loan.END_DATE.strftime('%d-%m-%Y') }}</td>
+            <td>₹{{ loan.FINE }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+    
+    <form method="POST">
+        <h3>Assign New Loan:</h3>
+        <input type="text" name="roll_number" placeholder="Roll Number" required>
+        <input type="text" name="book_ID" placeholder="Book ID" required>
+        <button type="submit">Assign Book</button>
+    </form>
+
+    <a href="{{ url_for('admin_catalog') }}">Manage Catalog</a> |
+    <a href="{{ url_for('stats') }}">View Stats</a> |
+    <a href="{{ url_for('logout') }}">Logout</a>
+
+    <script>
+        function searchTable(inputId, tableId) {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById(inputId);
+            filter = input.value.toUpperCase();
+            table = document.getElementById(tableId);
+            tr = table.getElementsByTagName("tr");
+            for (i = 1; i < tr.length; i++) {
+                td = tr[i].innerText;
+                if (td.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>

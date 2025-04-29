@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Stats Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <a href="/">Library System</a>
+        </div>
+        <div class="navbar-links">
+            <a href="/admin_profile">Profile</a>
+            <a href="/admin_catalog">Catalog</a>
+            <a href="/admin_stats">Stats</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </nav>
+    <h1>Admin Stats Dashboard</h1>
+
+    <div class="chart-container">
+        <canvas id="finesChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+        <canvas id="loansChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+        <canvas id="complaintsChart"></canvas>
+    </div>
+
+    <script>
+        // Fines Chart
+        const finesData = {
+            labels: {{ fines|map(attribute='ROLL_NUMBER')|list|tojson }},
+            datasets: [{
+                label: 'Total Fine (₹)',
+                data: {{ fines|map(attribute='TOTAL_FINE')|list|tojson }},
+                backgroundColor: 'rgba(255, 99, 132, 0.7)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }]
+        };
+    
+        new Chart(document.getElementById('finesChart'), {
+            type: 'bar',
+            data: finesData,
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+    
+        // Loans Chart
+        const loansData = {
+            labels: {{ loans|map(attribute='ROLL_NUMBER')|list|tojson }},
+            datasets: [{
+                label: 'Active Loans',
+                data: {{ loans|map(attribute='LOAN_COUNT')|list|tojson }},
+                backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        };
+    
+        new Chart(document.getElementById('loansChart'), {
+            type: 'pie',
+            data: loansData,
+            options: {
+                responsive: true
+            }
+        });
+    
+        // Complaints Chart
+        const complaintsData = {
+            labels: {{ complaints|map(attribute='ROLL_NUMBER')|list|tojson }},
+            datasets: [{
+                label: 'Complaints Submitted',
+                data: {{ complaints|map(attribute='COMPLAINT_COUNT')|list|tojson }},
+                backgroundColor: 'rgba(255, 206, 86, 0.7)',
+                borderColor: 'rgba(255, 206, 86, 1)',
+                borderWidth: 1
+            }]
+        };
+    
+        new Chart(document.getElementById('complaintsChart'), {
+            type: 'line',
+            data: complaintsData,
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+    </script>
+    
+</body>
+</html>

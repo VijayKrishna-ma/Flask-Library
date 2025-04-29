@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <a href="/">Library System</a>
+        </div>
+        <div class="navbar-links">
+            <a href="/student_profile">Profile</a>
+            <a href="/student_catalog">Catalog</a>
+            <a href="/contact">Contact</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </nav>
+    <div class="profile_box">
+    <h2 style="font: size 60px;">Welcome {{ student.NAME }}</h2>
+    <div class="prof_box">
+    <p>Department: {{ student.DEPARTMENT }}</p>
+    <p>Phone Number: {{ student.PHONE_NUMBER }}</p>
+    <p>Year: {{ student.YEAR }}</p>
+    <p>Due Amount: ₹{{ student.DUE }}</p>
+    </div>
+    </div>
+    <h3>Borrowed Books:</h3>
+    <table>
+        <tr>
+            <th>Book ID</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Fine</th>
+        </tr>
+        {% for loan in loans %}
+        <tr>
+            <td>{{ loan.BOOK_ID }}</td>
+            <td>{{ loan.START_DATE.strftime('%d-%m-%Y') }}</td>
+            <td>{{ loan.END_DATE.strftime('%d-%m-%Y') }}</td>
+            <td>₹{{ loan.FINE }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <a href="{{ url_for('student_catalog') }}">View Catalog</a> |
+    <a href="{{ url_for('logout') }}">Logout</a>
+</body>
+</html>

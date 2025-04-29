@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Catalog Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <a href="/">Library System</a>
+        </div>
+        <div class="navbar-links">
+            <a href="/admin_profile">Profile</a>
+            <a href="/admin_catalog">Catalog</a>
+            <a href="/admin_stats">Stats</a>
+            <a href="/recieval">Feedback</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </nav>
+    <h2>Admin Catalog Management</h2>
+
+    <form method="POST">
+        <input type="text" name="book_ID" placeholder="Book ID" required>
+        <input type="text" name="book_title" placeholder="Book Title" required>
+        <input type="text" name="book_author" placeholder="Book Author" required>
+        <input type="text" name="book_category" placeholder="Category" required>
+        <input type="text" name="book_edition" placeholder="Edition" required>
+        <button type="submit">Add Book</button>
+    </form>
+
+    <h3>Catalog</h3>
+    <input type="text" id="adminBookSearch" placeholder="Search..." onkeyup="searchTable('adminBookSearch', 'adminBookTable')">
+
+    <table id="adminBookTable">
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Category</th>
+            <th>Edition</th>
+            <th>Stock</th>
+        </tr>
+        {% for book in books %}
+        <tr>
+            <td>{{ book.BOOK_TITLE }}</td>
+            <td>{{ book.BOOK_AUTHOR }}</td>
+            <td>{{ book.BOOK_CATEGORY }}</td>
+            <td>{{ book.BOOK_EDITION }}</td>
+            <td>{{ book.STOCK }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <a href="{{ url_for('admin_profile') }}">Back to Admin Profile</a>
+
+    <script>
+        function searchTable(inputId, tableId) {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById(inputId);
+            filter = input.value.toUpperCase();
+            table = document.getElementById(tableId);
+            tr = table.getElementsByTagName("tr");
+            for (i = 1; i < tr.length; i++) {
+                td = tr[i].innerText;
+                if (td.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>

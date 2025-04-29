@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Catalog</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <a href="/">Library System</a>
+        </div>
+        <div class="navbar-links">
+            <a href="/student_profile">Profile</a>
+            <a href="/student_catalog">Catalog</a>
+            <a href="/contact">Contact</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </nav>
+    
+    <h2>Student Book Catalog</h2>
+    <input type="text" id="bookSearch" placeholder="Search..." onkeyup="searchTable('bookSearch', 'bookTable')">
+
+    <table id="bookTable">
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Category</th>
+            <th>Edition</th>
+            <th>Stock</th>
+        </tr>
+        {% for book in books %}
+        <tr>
+            <td>{{ book.BOOK_TITLE }}</td>
+            <td>{{ book.BOOK_AUTHOR }}</td>
+            <td>{{ book.BOOK_CATEGORY }}</td>
+            <td>{{ book.BOOK_EDITION }}</td>
+            <td>{{ book.STOCK }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <a href="{{ url_for('student_profile') }}">Back to Profile</a>
+
+    <script>
+        function searchTable(inputId, tableId) {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById(inputId);
+            filter = input.value.toUpperCase();
+            table = document.getElementById(tableId);
+            tr = table.getElementsByTagName("tr");
+            for (i = 1; i < tr.length; i++) {
+                td = tr[i].innerText;
+                if (td.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>

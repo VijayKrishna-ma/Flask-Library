@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Complaint Receival</title>
+
+</head>
+<body>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <a href="/">Library System</a>
+        </div>
+        <div class="navbar-links">
+            <a href="/admin_profile">Profile</a>
+            <a href="/admin_catalog">Catalog</a>
+            <a href="/admin_stats">Stats</a>
+            <a href="/recieval">Feedback</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </nav>
+    <h1>Complaint Receival</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Roll Number</th>
+                <th>Student Name</th>
+                <th>Topic</th>
+                <th>Complaint</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for complaint in complaints %}
+            <tr>
+                <td>{{ complaint.ROLL_NUMBER }}</td>
+                <td>{{ complaint.NAME }}</td>
+                <td>{{ complaint.TOPIC }}</td>
+                <td>{{ complaint.TEXT }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="4" style="text-align:center;">No complaints submitted yet.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ url_for('admin_profile') }}" class="back-button">Back</a>
+</body>
+</html>
